@@ -1,6 +1,6 @@
 <?php
 // require_once 'google-api-php-client/autoload.php';
-require_once 'credentials.php';
+// require_once 'credentials.php';
 require_once 'Authorizer.php';
 
 if (isset($_GET['code'])){
@@ -14,6 +14,7 @@ else if (isset($_GET['error'])){
 $authorizer = new Authorizer();
 $authorizer->authorize($authCode);
 
-header("Location " . $indexUri);
+echo "done";
+//header("Location: localhost");
 die()
 ?>

@@ -42,7 +42,7 @@ class SL_DBHandler extends DBHandler {
 
 		$this->executeQuery($tokenSetStmt);
 
-		echo "<br>executed set token query<br>";
+		// echo "<br>executed set token query<br>";
 	}
 }
 

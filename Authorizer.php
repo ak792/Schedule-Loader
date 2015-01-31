@@ -17,8 +17,8 @@ class Authorizer {
 		//redirect out of oauth2 page after finish
 
 		$client = new Google_Client();
-		$client->setClientId($clientId);
-		$client->setClientSecret($clientSecret);
+	//	$client->setClientId($clientId);
+	//	$client->setClientSecret($clientSecret);
 		$client->setRedirectUri($localhostRedirectUri);
 		$client->setApprovalPrompt("force");
 		$client->setAccessType("offline");
@@ -28,7 +28,8 @@ class Authorizer {
 		$authUrl = $client->createAuthUrl();
 
 		if ($authCode == null){
-			header('Location: ' . $authUrl);
+			header('Location: ' . $authUrl); //not redirecting?
+			// echo "why here";
 			die();
 		}
 
