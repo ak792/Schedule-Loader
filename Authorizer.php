@@ -5,40 +5,54 @@ require_once "SL_DBHandler.php";
 
 class Authorizer {
 
-	public function authorize($authCode){
-		//redirect out of oauth2 page after finish
+	private $client;
 
-		$client = new Google_Client();
-	//	$client->setClientId($clientId);
-	//	$client->setClientSecret($clientSecret);
-		$client->setRedirectUri($localhostRedirectUri);
-		$client->setApprovalPrompt("force");
-		$client->setAccessType("offline");
-		$client->setLoginHint("ark73@georgetown.edu"); //for development only
-		$client->addScope("https://www.googleapis.com/auth/calendar");
-
-		$authUrl = $client->createAuthUrl();
-
-		if ($authCode == null){
-			header('Location: ' . $authUrl); //not redirecting?
-			// echo "why here";
-			die();
-		}
-
-		$accessTokenJson = $client->authenticate($authCode);
-		$accessToken = json_decode($accessTokenJson);
-
-		require_once "header.php";
-
-		if ($accessToken){
-			echo "<br>retrieved access token<br>";
-		}
-		
-		$dbHandler = new SL_DBHandler();
-		$dbHandler->setToken($accessToken);
+	public function authorize($redirectUri){
+		$data = array("state" => $redirectUri);
+		header('Location: ./oauth2.php?' . http_build_query($data));
+		die();
 	}
 
+	public function __construct(){
+		$this->buildClient();
+	}
+
+	public function buildClient(){
+		$clientId = "736158154921-6f3soot9lodua2dqr00degdajh3qo8jc.apps.googleusercontent.com";
+		$clientSecret = "DUql47f5Eys1QX_Ry3o2VoiE";
+		$this->client = new Google_Client();
+
+		$this->client->setClientId($clientId);
+		$this->client->setClientSecret($clientSecret);
+		$this->client->setRedirectUri('http://localhost/oauth2_pt2.php');
+		$this->client->setApprovalPrompt("force");
+		$this->client->setAccessType("offline");
+		$this->client->setLoginHint("ark73@georgetown.edu"); //DEV ONLY
+		$this->client->setState(urlencode($callerUri));
+		$this->client->addScope("https://www.googleapis.com/auth/calendar");
+	}
+
+	public function getAuthCode(){
+		$authUrl = $this->client->createAuthUrl();
+
+		header('Location: ' . $authUrl);
+		die();
+	}
+
+	public function getAccessToken($authCode){
+		$accessTokenJson = $this->client->authenticate($authCode);
+		$accessToken = json_decode($accessTokenJson);
+
+		if (!$accessToken){
+			return false;
+		}
+
+		$dbHandler = new SL_DBHandler();
+		$dbHandler->setToken($accessToken);
+
+		return true;
+	}
 }
  
-	require_once "footer.php";
+	
 ?>
