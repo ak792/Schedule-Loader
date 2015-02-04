@@ -5,14 +5,6 @@ require_once "SL_DBHandler.php";
 
 class Authorizer {
 
-	public function __construct(){
-	//	$this->setupMySQLConnection();
-	}
-
-	public function __destruct(){
-	//	$this->teardownMySQLConnection();
-	}
-
 	public function authorize($authCode){
 		//redirect out of oauth2 page after finish
 
