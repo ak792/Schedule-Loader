@@ -1,7 +1,20 @@
 <?php
-	$clientId = "736158154921-6f3soot9lodua2dqr00degdajh3qo8jc.apps.googleusercontent.com";
-	$clientSecret = "DUql47f5Eys1QX_Ry3o2VoiE";
-	$realRedirectUri = "http://ec2-54-186-73-85.us-west-2.compute.amazonaws.com";
-	$localhostRedirectUri = "http://localhost/oauth2.php";
-	//$indexUri = $_SERVER['SERVER_NAME'];
+	
+
+class Credentials {
+
+	private $clientId = "736158154921-6f3soot9lodua2dqr00degdajh3qo8jc.apps.googleusercontent.com";
+	private $clientSecret = "jr1Qga3lTDldJ5qu-3DT_Kul";
+
+	public function getClientId(){
+		return $this->clientId;
+	}
+
+	public function getClientSecret(){
+		return $this->clientSecret;
+	}
+
+}
+
+
 ?>

@@ -18,6 +18,7 @@ class DBHandler {
 
 	public function setupMySQLConnection(){
 
+		//refactor this business out
 		$hostname = "localhost";
 		$username = "root";
 		$password = "root";
@@ -53,9 +54,12 @@ class DBHandler {
 	}	
 
 	public function executeQuery($query){
-		if (!$this->conn->query($query)){
+		if (!$res = $this->conn->query($query)){
 			echo "<br>Error: " . $query . "<br>" . $this->conn->error;
+			return;
 		}
+
+		return $res;
 	}
 
 	public static function sanitizeString($strRaw){
