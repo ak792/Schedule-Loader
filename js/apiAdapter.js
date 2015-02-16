@@ -12,7 +12,7 @@ apiAdapter.printError = function(reason){
 }
 
 // only add courses after gapi loads
-adpiAdapter.addAllCourses = function(){
+apiAdapter.addAllCourses = function(){
 	scraper.scrape();
 	for (var i = 0; i < scraper.courses.length; i++){
 		apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
