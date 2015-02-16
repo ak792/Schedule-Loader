@@ -6,7 +6,7 @@ require_once 'google-api-php-client/autoload.php';
 class Calendar {
 
 	private $service;
-	private $calendarId = "georgetown.edu_bgsam1dpqtrvv4tgd644a4dcec@group.calendar.google.com";
+	private $calendarId = "primary";
 
 	public function __construct($client){
 		$this->createCalendar($client);
@@ -17,7 +17,7 @@ class Calendar {
 	}
 
 	public function createEvent($summary = "Appointment", $location = "Somewhere", 
-								$startTime = "2015-01-29T10:00:00.000-05:00", $endTime = "2015-01-29T11:00:00.000-05:00"){
+								$startTime = "2015-01-30T10:00:00.000-05:00", $endTime = "2015-01-30T11:00:00.000-05:00"){
 		
 		$event = new Google_Service_Calendar_Event();
 		$event->setSummary($summary);

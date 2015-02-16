@@ -8,6 +8,7 @@ require_once "SL_DBHandler.php";
 //Wrapper class for Google_Client
 //Note: need to implement all functions used externally intended to act on a Google_Client
 
+//TODO: BACKEND NOT SET UP FOR MORE THAN ONE PERSON
 class Client{
 
 	//need to remember to use the $google_client when interacting with Google API
