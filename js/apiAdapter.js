@@ -46,6 +46,7 @@ apiAdapter.handleAuthResult = function(authResult){
 }
 
 apiAdapter.insertCalendar = function(){
+	console.log('here');
 	apiAdapter.gapi.client.calendar.calendars.insert({
 		summary: "Class Schedule",
 		timeZone: "America/New_York",
