@@ -14,10 +14,19 @@ apiAdapter.printError = function(reason){
 // only add courses after gapi loads
 apiAdapter.addAllCourses = function(){
 	scraper.scrape();
-	apiAdapter.insertCalendar();
-	for (var i = 0; i < scraper.courses.length; i++){
-		apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
-	}
+
+	apiAdapter.gapi.client.calendar.calendars.insert({
+		summary: "Class Schedule",
+		timeZone: "America/New_York",
+		description: "Auto-generated class schedule from Schedule Loader"
+	}).then(
+		function(resp){
+			apiAdapter.calendarId = resp.id;
+			for (var i = 0; i < scraper.courses.length; i++){
+				apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
+			}
+		},
+		apiAdapter.printError);
 }
 
 //called when JS client library loads --> need to load this script beforehand
@@ -45,18 +54,10 @@ apiAdapter.handleAuthResult = function(authResult){
 	}
 }
 
-apiAdapter.insertCalendar = function(){
-	console.log('here');
-	apiAdapter.gapi.client.calendar.calendars.insert({
-		summary: "Class Schedule",
-		timeZone: "America/New_York",
-		desription: "Auto-generated class schedule from Schedule Loader"
-	}).then(
-		function(resp){
-			apiAdapter.calendarId = resp.id;
-		},
-		apiAdapter.printError);
-}
+// apiAdapter.insertCalendar = function(){
+// 	console.log('here');
+	
+// }
 
 apiAdapter.insertClassEvent = function(courseDataParser, course){
 	var calEvent;
