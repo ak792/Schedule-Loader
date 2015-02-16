@@ -17,7 +17,7 @@ apiAdapter.addAllCourses = function(){
 
 	apiAdapter.gapi.client.calendar.calendars.insert({
 		"resource" :
-			{"summary": "Class Schedule",
+			{"summary": "Classes",
 			"timeZone": "America/New_York",
 			"description": "Auto-generated class schedule from Schedule Loader"
 			}
