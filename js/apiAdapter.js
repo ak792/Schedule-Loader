@@ -23,11 +23,7 @@ apiAdapter.addAllCourses = function(){
 			}
 	}).then(
 		function(resp){
-			console.log(resp);
-			console.log('here');
 			apiAdapter.calendarId = resp.result.id;
-			console.log(apiAdapter.calendarId);
-			console.log(resp.result);
 			for (var i = 0; i < scraper.courses.length; i++){
 				apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
 			}
@@ -77,7 +73,7 @@ apiAdapter.insertClassEvent = function(courseDataParser, course){
 		requestInsertEvent.then(
 			function(resp){
 				console.log('successfully added');
-				//console.log(JSON.stringify(resp));
+				console.log(JSON.stringify(resp));
 			}, apiAdapter.printError);
 	}
 }
