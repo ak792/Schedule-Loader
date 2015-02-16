@@ -1,0 +1,12 @@
+Make a button by copy-pasting the following into the console
+	var btn = document.createElement("div");
+	btn.id = "authorize-button";
+	btn.textContent = "mybutton!";
+	document.body.appendChild(btn);
+Cat the scraper.js, eventParser.js, insertEvent.js file (or whatever you want to run in myaccess's console)
+Copy-paste it into the console on the Student Detail Schedule page
+Copy-paste the following into the console:
+	$.getScript("https://apis.google.com/js/client.js?onload=loadClient”, function(){});
+
+$.getScript("https://apis.google.com/js/client.js?onload=loadClient", function(){});
+$.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad", function(){});
