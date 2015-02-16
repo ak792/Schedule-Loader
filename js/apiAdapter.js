@@ -21,6 +21,7 @@ apiAdapter.addAllCourses = function(){
 		description: "Auto-generated class schedule from Schedule Loader"
 	}).then(
 		function(resp){
+			console.log(resp);
 			apiAdapter.calendarId = resp.id;
 			for (var i = 0; i < scraper.courses.length; i++){
 				apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
