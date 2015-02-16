@@ -24,6 +24,7 @@ apiAdapter.addAllCourses = function(){
 	}).then(
 		function(resp){
 			console.log(resp);
+			console.log('here');
 			apiAdapter.calendarId = resp.id;
 			for (var i = 0; i < scraper.courses.length; i++){
 				apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
