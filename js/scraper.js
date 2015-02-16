@@ -4,7 +4,7 @@ scraper.courses = [];
 scraper.scrape = function(){
 	var courses = [];
 	$('.captiontext:even').each(function(){ 
-		courses.push({"courseName" : $(this).html()}) 
+		courses.push({courseName : $(this).html()}) 
 	});
 
 	$('.ddlabel:contains("Assigned Instructor")').next().children().each(function(ind) { 
