@@ -68,7 +68,6 @@ courseDataParser.getStartEndFirstClass = function(date, days, time){
 courseDataParser.getFirstDate = function(date, days){
 
 	var currDate = new Date(date.getTime());
-	console.log('here');
 	var daysInNums = days.map(function(item){ return courseDataParser.daysMapping[item].num; });
 	
 	while (daysInNums.indexOf(currDate.getDay()) == -1 ){

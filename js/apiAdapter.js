@@ -68,7 +68,7 @@ apiAdapter.insertClassEvent = function(courseDataParser, course){
 		var requestInsertEvent = apiAdapter.gapi.client.calendar.events.insert(calEvent);
 		requestInsertEvent.then(
 			function(resp){
-				console.log('successfully added to calendar owned by ' + resp.result.creator.email);
+				console.log('successfully added ' + course.courseName + ' to calendar owned by ' + resp.result.creator.email);
 				// console.log(JSON.stringify(resp));
 				console.log();
 			}, apiAdapter.printError);
