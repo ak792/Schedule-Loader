@@ -11,6 +11,14 @@ apiAdapter.printError = function(reason){
 	console.log("Error: " + reason.result.error.message);
 }
 
+// only add courses after gapi loads
+adpiAdapter.addAllCourses = function(){
+	scraper.scrape();
+	for (var i = 0; i < scraper.courses.length; i++){
+		apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
+	}
+}
+
 //called when JS client library loads --> need to load this script beforehand
 apiAdapter.handleClientLoad = function(){
 	this.gapi = gapi;
@@ -32,7 +40,7 @@ apiAdapter.handleAuthResult = function(authResult){
 	if (authResult && !authResult.error){
 		//if authResult is valid, load the api then addAllCourses
 		apiAdapter.gapi.client.load('calendar', 'v3')
-			.then(addAllCourses, apiAdapter.printError);
+			.then(apiAdapter.addAllCourses, apiAdapter.printError);
 	}
 }
 
