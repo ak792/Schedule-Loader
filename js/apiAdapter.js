@@ -27,6 +27,7 @@ apiAdapter.addAllCourses = function(){
 			for (var i = 0; i < scraper.courses.length; i++){
 				apiAdapter.insertClassEvent(courseDataParser, scraper.courses[i]);
 			}
+			alert('Your classes have been added to your calendar!');
 		},
 		apiAdapter.printError);
 }
